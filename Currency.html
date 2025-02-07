@@ -10,16 +10,14 @@
             margin: 0;
             padding: 20px;
             background-color: #f0f8ff;
-            color: #333;
         }
         .container {
             max-width: 900px;
             margin: auto;
-            background: white;
+            background: #ffffff;
             padding: 25px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border-radius: 12px;
-            background-color: #ffffff;
         }
         h1 {
             color: #2a5d84;
@@ -34,8 +32,8 @@
         .image-container img {
             width: 80%;
             max-width: 700px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
         .info-box {
             background: #d1f7d1;
@@ -72,7 +70,7 @@
             text-transform: uppercase;
         }
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
         .back-link {
             display: block;
@@ -93,102 +91,60 @@
 <body>
     <div class="container">
         <h1>💵 สกุลเงินของแต่ละประเทศ</h1>
-        
         <div class="image-container">
             <img src="currency_world.jpg" alt="สกุลเงินทั่วโลก">
         </div>
-
         <div class="info-box">
             🌍 <strong>รู้หรือไม่?</strong> สกุลเงินแต่ละประเทศมีค่าต่างกันและมีผลต่อการค้าระหว่างประเทศ!
         </div>
-
         <h2>📌 สกุลเงินที่นิยมใช้มากที่สุด</h2>
-        <p>
-            แต่ละประเทศมีสกุลเงินที่เป็นเอกลักษณ์ของตนเอง ซึ่งใช้สำหรับการซื้อขายภายในประเทศ  
-            บางสกุลเงิน เช่น **ดอลลาร์สหรัฐ (USD)** หรือ **ยูโร (EUR)** เป็นสกุลเงินที่ใช้กันทั่วโลก!
-        </p>
-
+        <p>แต่ละประเทศมีสกุลเงินที่เป็นเอกลักษณ์ของตนเอง ซึ่งใช้สำหรับการซื้อขายภายในประเทศ...</p>
         <h2>💹 ตารางเปรียบเทียบสกุลเงินหลัก</h2>
-        <table id="currency-table">
+        <table>
             <tr>
                 <th>ประเทศ</th>
                 <th>สกุลเงิน</th>
                 <th>สัญลักษณ์</th>
                 <th>รหัสสากล (ISO)</th>
-                <th>อัตราแลกเปลี่ยน (THB)</th>
             </tr>
             <tr>
                 <td>🇺🇸 สหรัฐอเมริกา</td>
                 <td>ดอลลาร์สหรัฐ</td>
                 <td>$</td>
                 <td>USD</td>
-                <td id="usd"></td>
             </tr>
             <tr>
                 <td>🇪🇺 สหภาพยุโรป</td>
                 <td>ยูโร</td>
                 <td>€</td>
                 <td>EUR</td>
-                <td id="eur"></td>
             </tr>
             <tr>
                 <td>🇯🇵 ญี่ปุ่น</td>
                 <td>เยน</td>
                 <td>¥</td>
                 <td>JPY</td>
-                <td id="jpy"></td>
             </tr>
             <tr>
                 <td>🇬🇧 สหราชอาณาจักร</td>
                 <td>ปอนด์สเตอร์ลิง</td>
                 <td>£</td>
                 <td>GBP</td>
-                <td id="gbp"></td>
             </tr>
             <tr>
                 <td>🇨🇳 จีน</td>
                 <td>หยวน</td>
                 <td>¥</td>
                 <td>CNY</td>
-                <td id="cny"></td>
             </tr>
             <tr>
                 <td>🇹🇭 ไทย</td>
                 <td>บาท</td>
                 <td>฿</td>
                 <td>THB</td>
-                <td>1</td>
             </tr>
         </table>
-
         <a href="index.html" class="back-link">🔙 ย้อนกลับ</a>
     </div>
-
-    <script>
-        async function fetchExchangeRates() {
-            const apiKey = 'your_api_key'; // แทนที่ 'your_api_key' ด้วย API key ของคุณ
-            const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/THB`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-
-                if (data.result === 'success') {
-                    document.getElementById('usd').textContent = data.conversion_rates.USD;
-                    document.getElementById('eur').textContent = data.conversion_rates.EUR;
-                    document.getElementById('jpy').textContent = data.conversion_rates.JPY;
-                    document.getElementById('gbp').textContent = data.conversion_rates.GBP;
-                    document.getElementById('cny').textContent = data.conversion_rates.CNY;
-                } else {
-                    console.error('Error fetching exchange rates:', data.error);
-                }
-            } catch (error) {
-                console.error('Error fetching exchange rates:', error);
-            }
-        }
-
-        // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลเมื่อหน้าเว็บโหลดเสร็จ
-        window.onload = fetchExchangeRates;
-    </script>
 </body>
 </html>
